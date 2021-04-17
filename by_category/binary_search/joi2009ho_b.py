@@ -5,19 +5,19 @@
 
 import statistics
 
+
 def find(D, k):
-    median = statistics.median(D)
+    lo = 0
+    hi = len(D)
 
-    if len(D) == 3:
-        return min(abs(D[0] - k), abs(D[1] - k), abs(D[2] - k))
-    elif k < median:
-        return find(D[:round(len(D) / 2) + 1], k)
-    else:
-        return find(D[round(len(D) / 2) - 1:], k)
+    while lo < hi:
+        mid = (lo + hi) // 2
 
-
-def calc_distance(d,n,m,D,k):
-    return find(D, k)
+        if k < D[mid]:
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
 
 
 def resolve():
@@ -28,17 +28,20 @@ def resolve():
     for _ in range(n - 1):
         D.append(int(input()))
     D.append(d)
-    D = sorted(D)
+    D.sort()
 
     K = []
     for _ in range(m):
         K.append(int(input()))
 
-    K = sorted(K)
+    K.sort()
 
     total = 0
     for k in K:
-        total += find(D,k)
+        i = find(D, k)
+        total += min(k - D[i - 1], D[i] - k)
 
     print(total)
-    #print(D)
+
+if __name__ == "__main__":
+    resolve()
