@@ -3,8 +3,6 @@
 二分探索
 """
 
-import statistics
-
 
 def find(D, k):
     lo = 0
