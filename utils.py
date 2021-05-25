@@ -3,6 +3,13 @@ import itertools
 import math
 
 
+## input
+def input():
+    from sys import stdin
+    readline = stdin.readline
+    return readline()[:-1]
+
+
 ## itertools
 # product(list, repeat=number): nested for loop, duplicated
 # combinations(list, number): nested for loop, do not duplicated
